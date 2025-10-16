@@ -22,7 +22,7 @@ class ProductController extends Controller
 
         $q->costo($request->input('costo_op'), $request->input('costo'));
         $q->stock($request->input('stock_op'), $request->input('stock'));
-        $q->orden($request->input('orden_campo'), $request->input('orden_dir'));
+        $q->orden($request->input('orden_campo', 'costo'), $request->input('orden_dir', 'asc'));
 
         $products = $q->paginate(10)->withQueryString();
 

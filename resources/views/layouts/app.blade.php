@@ -9,7 +9,7 @@
 <body>
 <nav class="navbar navbar-dark bg-dark">
   <div class="container">
-    <a class="navbar-brand" href="{{ route('products.index') }}">App</a>
+    <a class="navbar-brand" href="{{ route('products.index') }}">STOQ</a>
   </div>
 </nav>
 <main class="container py-4">
