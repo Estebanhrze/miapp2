@@ -1,48 +1,42 @@
-{{-- resources/views/products/create.blade.php --}}
-@extends('layouts.app')
+@extends('layouts.admin')
 
-@section('title','Crear producto')
+@section('title', 'Crear producto')
 
 @section('content')
-<h1 class="h4 mb-3">Crear producto</h1>
-
-{{-- Muestra errores generales --}}
-@if ($errors->any())
-  <div class="alert alert-danger">
-    <ul class="m-0">
-      @foreach ($errors->all() as $e)
-        <li>{{ $e }}</li>
-      @endforeach
-    </ul>
-  </div>
-@endif
-
-<form method="POST" action="{{ route('products.store') }}" class="card card-body">
-  @csrf
-
-  <div class="mb-3">
-    <label class="form-label">Código</label>
-    <input class="form-control" name="codigo" value="{{ old('codigo') }}">
+<div class="card shadow-sm">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Crear producto</h5>
   </div>
 
-  <div class="mb-3">
-    <label class="form-label">Nombre</label>
-    <input class="form-control" name="nombre" value="{{ old('nombre') }}">
-  </div>
+  <div class="card-body">
+    <form action="{{ route('products.store') }}" method="POST">
+      @csrf
 
-  <div class="mb-3">
-    <label class="form-label">Costo</label>
-    <input class="form-control" type="number" step="0.01" name="costo" value="{{ old('costo') }}">
-  </div>
+      <div class="mb-3">
+        <label class="form-label">Código</label>
+        <input type="text" name="codigo" value="{{ old('codigo') }}" class="form-control" required>
+      </div>
 
-  <div class="mb-3">
-    <label class="form-label">Stock</label>
-    <input class="form-control" type="number" step="1" name="stock" value="{{ old('stock') }}">
-  </div>
+      <div class="mb-3">
+        <label class="form-label">Nombre</label>
+        <input type="text" name="nombre" value="{{ old('nombre') }}" class="form-control" required>
+      </div>
 
-  <div class="d-flex gap-2">
-    <button type="submit" class="btn btn-primary">Guardar</button>
-    <a href="{{ route('products.index') }}" class="btn btn-outline-secondary">Cancelar</a>
+      <div class="mb-3">
+        <label class="form-label">Costo</label>
+        <input type="number" step="0.01" name="costo" value="{{ old('costo') }}" class="form-control" required>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Stock</label>
+        <input type="number" name="stock" value="{{ old('stock') }}" class="form-control" required>
+      </div>
+
+      <div class="d-flex justify-content-end">
+        <a href="{{ route('products.index') }}" class="btn btn-secondary me-2">Cancelar</a>
+        <button type="submit" class="btn btn-success">Guardar</button>
+      </div>
+    </form>
   </div>
-</form>
+</div>
 @endsection

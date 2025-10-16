@@ -1,35 +1,29 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>@yield('title', 'STOQ')</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@yield('title','STOQ')</title>
+    @vite(['resources/css/app.css','resources/js/app.js'])
 </head>
-<body>
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
-    <div class="container-fluid">
-      <a class="navbar-brand fw-bold text-white" href="{{ url('/') }}">STOQ</a>
+<body class="font-sans antialiased bg-white text-gray-800">
+    <div class="min-h-screen">
+        {{-- Navbar de Breeze (si lo usas) --}}
+        @includeIf('layouts.navigation')
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        {{-- Cabecera opcional por sección --}}
+        @hasSection('header')
+            <header class="bg-white shadow">
+                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    @yield('header')
+                </div>
+            </header>
+        @endif
 
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Inicio</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url('/products') }}">Productos</a></li>
-          <li class="nav-item"><a class="nav-link" href="{{ url('/about') }}">Nosotros</a></li>
-        </ul>
-      </div>
+        {{-- Contenido principal por secciones --}}
+        <main>
+            @yield('content')
+        </main>
     </div>
-  </nav>
-
-  <main class="container my-5">
-    @yield('content')
-  </main>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
